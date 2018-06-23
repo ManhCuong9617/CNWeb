@@ -1,0 +1,107 @@
+﻿@model FashionShop.Areas.Admin.Models.DTO.ProductDetail
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section jsFooter{
+<script>
+        $('#btnChonAnh').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#url').val(url);
+                $('#link').attr("src", url);
+            };
+            finder.popup();
+        })
+
+</script>
+    <script src="~/assets/admin/js/updateAdmin.js"></script>
+}
+<div id="page-wrapper">
+
+    <div class="col-md-4">
+        <img src="@Model.product[0].urlAnh" style="width:100%; height:100%" id="link" />
+    </div>
+    <div class="col-md-8">
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="ma">Mã sản phẩm: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control ma" id="ma" value="@Model.product[0].maSanPham" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="ten">Tên sản phẩm: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control ten" id="ten" value="@Model.product[0].tenSanPham">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="gia">Giá sản phẩm: </label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control gia" id="gia" value="@Model.product[0].giaSanPham" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="mota">Mô tả: </label>
+                <div class="col-sm-9">
+                    <textarea class="form-control mota" rows="5" id="mota" >@Model.product[0].moTa</textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="url">Url: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control chatlieu" id="url" value="@Model.product[0].urlAnh">
+                    <a id="btnChonAnh" href="#">Chọn ảnh</a>
+                </div>
+                
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="chatlieu">Chất liệu: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control chatlieu" id="chatlieu" value="@Model.product[0].chatLieu">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="mau">Màu sắc: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control mau" id="mau" value="@Model.product[0].mauSac">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="sl">Số lượng đặt mua: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control sl" id="sl" value="@Model.product[0].soLuongDatMua">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="ngaytao">Ngày tạo </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control ngaytao" id="ngaytao" value="@Model.product[0].ngayTao" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="tenloai">Loại sản phẩm: </label>
+                <div class="col-sm-9">
+                    <select class="form-control tenloai" id="tenloai">
+                        @foreach (var item in Model.groupDetail)
+                        {
+                            if (item.tenLoaiSanPham == Model.product[0].tenLoai)
+                            {
+                                <option value="@item.maLoaiSanPham" selected>@item.tenLoaiSanPham</option>
+                            }
+                            else
+                            {
+                                <option value="@item.maLoaiSanPham">@item.tenLoaiSanPham</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" id="btnUpdateProduct"  url="@Model.product[0].urlAnh">Lưu thay đổi</button>
+        </div>
+
+    </div>
+</div>

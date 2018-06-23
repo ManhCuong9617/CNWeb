@@ -1,0 +1,32 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<section id="advertisement">
+    <div id="slider" class="nivoSlider">
+
+        <img src="~/Resources/slider/1.jpg" />
+        <img src="~/Resources/slider/6.jpg" />
+        <img src="~/Resources/slider/7.jpg" />
+        <img src="~/Resources/slider/8.jpg" />
+        <img src="~/Resources/slider/9.png" />
+    </div>
+    <div style="clear:both"></div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                @{Html.RenderAction("LeftMenu" , "Home");}  <!--Left Menu-->
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                
+                    @RenderBody()
+            </div>
+        </div>
+    </div>
+</section>
+
